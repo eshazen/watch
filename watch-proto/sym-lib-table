@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "e-ink")(type "KiCad")(uri "${KIPRJMOD}/e-ink.kicad_sym")(options "")(descr ""))
+  (lib (name "Wireless")(type "KiCad")(uri "${KIPRJMOD}/Wireless.kicad_sym")(options "")(descr ""))
+)

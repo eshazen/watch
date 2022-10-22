@@ -16,6 +16,10 @@ Some fairly smart algorithm should recognize when not near an AP and give up,
 checking at longer intervals.  A button press should be available to force
 WiFi update.
 
+## Doco
+
+* [Mfgr page](https://www.buydisplay.com/red-1-54-inch-e-ink-display-module-200x200-for-arduino-raspberry-pi)
+
 ## Parts?
 
 * MCU:  ATMega1281-16AUR (64-TQFP)
