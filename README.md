@@ -16,9 +16,17 @@ Some fairly smart algorithm should recognize when not near an AP and give up,
 checking at longer intervals.  A button press should be available to force
 WiFi update.
 
+Ordered a black/red display from buydisplay.com.  This works ok but has
+a ~15s refresh time and doesn't support fast/partial refresh.  My bad!
+
+Ordered another from waveshare which is monochrome and does support
+partial refresh.  Holding off on buying anything else until the display
+part is working reasonably.
+
 ## Doco
 
-* [Mfgr page](https://www.buydisplay.com/red-1-54-inch-e-ink-display-module-200x200-for-arduino-raspberry-pi)
+* Display: [Mfgr page](https://www.buydisplay.com/red-1-54-inch-e-ink-display-module-200x200-for-arduino-raspberry-pi)
+* eInk.md
 
 ## Parts?
 
