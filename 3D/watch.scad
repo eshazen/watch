@@ -95,10 +95,11 @@ module batt() {
 }
 
 
-wf_wid = 14.3;
-wf_hgt = 24.8;
+// wf_wid = 14.3;
+// wf_hgt = 24.8;
+wf_wid = 15.2;
+wf_hgt = 28.5;
 wf_thk = 4;
-
 
 module wf() {
      translate( [-wf_wid/2, -wf_hgt/2, 0])
@@ -145,12 +146,10 @@ module pcb() {
 	  translate( [pcb_wid/2, pcb_hgt/2+3, 0]) rotate( [0, 180, 0]) rtc();
 
 	  translate( [0, 0, -pcb_thk]) {
-	       translate( [0, 10, 0]) sw(180);
-	       translate( [0, 25, 0]) sw(180);
-	  }
-	  translate( [pcb_wid, 0, -pcb_thk]) {
-	       translate( [0, 10, 0]) sw(0);
-	       translate( [0, 25, 0]) sw(0);
+	       translate( [5, 0, 0]) sw(270);
+	       translate( [pcb_wid-5, 0, 0]) sw(270);
+	       translate( [3, pcb_hgt, 0]) sw(90);
+	       translate( [pcb_wid-3, pcb_hgt, 0]) sw(90);
 	  }
 
 	  translate( [pcb_wid/2, 15, 0])
