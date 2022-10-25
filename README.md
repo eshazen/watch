@@ -16,12 +16,32 @@ Some fairly smart algorithm should recognize when not near an AP and give up,
 checking at longer intervals.  A button press should be available to force
 WiFi update.
 
+### Display
+
 Ordered a black/red display from buydisplay.com.  This works ok but has
 a ~15s refresh time and doesn't support fast/partial refresh.  My bad!
 
 Ordered another from waveshare which is monochrome and does support
 partial refresh.  Holding off on buying anything else until the display
 part is working reasonably.
+
+* Waveshare [page](https://www.waveshare.com/product/displays/e-paper/1.54inch-e-paper-module.htm?___SID=U)
+[wiki](https://www.waveshare.com/wiki/1.54inch_e-Paper_Module)
+
+### Radio
+
+Meanwhile, Carlos (of MLRC) suggests BLE or VHF radio as an alternative
+to WiFi.  This would require a bit of setup but would be much lower power.
+
+RFM69 [data](https://cdn.sparkfun.com/datasheets/Wireless/General/RFM69HCW-V1.1.pdf) is 
+interesting, but needs a 3 inch antenna.  Possibly it would work
+OK if wrapped around the watch band?  These things are cheap ($6.50 for COM-13909 from
+Sparkfun).  3.3V.  Needs 16mA to receive, 16..130mA to transmit (depends on settings).
+Bit rates are modem-ish up to 156k.  Claims 50m range indoors.
+
+nRF24L01 and friends.  2.4GHz.  Bit rate s 250/1M/2M.  Power for Rx:
+8.9-13.5mA Power for Tx: 8-11mA.  Fancier protocol with packet
+retransmit, etc.  $21 each for WRL-00691.
 
 ## Doco
 
