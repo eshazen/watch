@@ -26,7 +26,7 @@ partial refresh.  Holding off on buying anything else until the display
 part is working reasonably.
 
 * Waveshare [page](https://www.waveshare.com/product/displays/e-paper/1.54inch-e-paper-module.htm?___SID=U)
-[wiki](https://www.waveshare.com/wiki/1.54inch_e-Paper_Module)
+[wiki](https://www.waveshare.com/wiki/1.54inch_e-Paper_Module) [data](https://www.waveshare.com/w/upload/e/e5/1.54inch_e-paper_V2_Datasheet.pdf)
 
 ### Radio
 
