@@ -1,0 +1,52 @@
+
+
+
+
+
+
+	/* EPD hardware init start */
+	Reset();
+
+	WaitUntilIdle();
+	SendCommand(0x12);  //SWRESET
+	WaitUntilIdle();
+
+	SendCommand(0x01); //Driver output control
+	SendData(0xC7);
+	SendData(0x00);
+	SendData(0x00);
+
+	SendCommand(0x11); //data entry mode
+	SendData(0x03);
+
+  SendCommand(0x44);
+  /* x point must be the multiple of 8 or the last 3 bits will be ignored */
+  SendData((0 >> 3) & 0xFF);
+  SendData((199 >> 3) & 0xFF);
+
+  SendCommand(0x45);
+
+  SendData(0 & 0xFF);
+  SendData((0 >> 8) & 0xFF);
+  SendData(199 & 0xFF);
+  SendData((199 >> 8) & 0xFF);
+
+	SendCommand(0x3C); //BorderWavefrom
+	SendData(0x01);
+
+	SendCommand(0x18);
+	SendData(0x80);
+
+	SendCommand(0x22); // //Load Temperature and waveform setting.
+	SendData(0XB1);
+	SendCommand(0x20);
+
+	SendCommand(0x4E);   // set RAM x address count to 0;
+	SendData(0x00);
+	SendCommand(0x4F);   // set RAM y address count to 0X199;
+	SendData(0xC7);
+	SendData(0x00);
+	WaitUntilIdle();
+
+	SetLut(WF_Full_1IN54);
+	/* EPD hardware init end */

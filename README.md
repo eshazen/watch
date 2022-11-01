@@ -10,6 +10,9 @@ connect to a phone and generate alerts.  Instead, I'd like:
    * Weather info
    * Any other not-quite realtime info pushed via WiFi
 
+The watch would link to base stations at home and at work for updates.
+This could be WiFi (power hungry!), or something like RFM69 (915 MHz).
+
 The idea would be that the watch has WiFi but only powers up every 10min or
 so and tries to connect to the last AP, otherwise tries a short list of AP.
 Some fairly smart algorithm should recognize when not near an AP and give up,
@@ -28,20 +31,50 @@ part is working reasonably.
 * Waveshare [page](https://www.waveshare.com/product/displays/e-paper/1.54inch-e-paper-module.htm?___SID=U)
 [wiki](https://www.waveshare.com/wiki/1.54inch_e-Paper_Module) [data](https://www.waveshare.com/w/upload/e/e5/1.54inch_e-paper_V2_Datasheet.pdf)
 
+This is reasonable, just a bit big.  Another alternative is the waveshare
+1.02inch display.
+
 ### Radio
 
 Meanwhile, Carlos (of MLRC) suggests BLE or VHF radio as an alternative
 to WiFi.  This would require a bit of setup but would be much lower power.
+
+#### VHF/UHF
 
 RFM69 [data](https://cdn.sparkfun.com/datasheets/Wireless/General/RFM69HCW-V1.1.pdf) is 
 interesting, but needs a 3 inch antenna.  Possibly it would work
 OK if wrapped around the watch band?  These things are cheap ($6.50 for COM-13909 from
 Sparkfun).  3.3V.  Needs 16mA to receive, 16..130mA to transmit (depends on settings).
 Bit rates are modem-ish up to 156k.  Claims 50m range indoors.
+Module is about 0.8" x 0.8" (20.3mm)
 
 nRF24L01 and friends.  2.4GHz.  Bit rate s 250/1M/2M.  Power for Rx:
 8.9-13.5mA Power for Tx: 8-11mA.  Fancier protocol with packet
 retransmit, etc.  $21 each for WRL-00691.
+
+#### ESP-01
+
+ESP-01 Power Consumption:  
+* 170mA working worst case
+* 0.9mA "light sleep"
+* 10uA "deep sleep"
+
+Datasheet says "...sleep 300s and waking up to connect to the AP
+(taking about 0.3~1s), the overall average current is less than 1mA.
+Not clear how this is affected if multiple AP must be tried.  Need
+to get some ESP-01 and play with them.
+
+So we're looking at ~1mA minimum average power with capability to
+deliver ~200mA.  For few days running it would be nice to have
+~100mAh.
+
+It seems that on ESP-01 modules you need to wire pin 8 to nRESET so it
+can self-wake out of deep sleep.  Otherwise you can just call
+ESP.deepSleep(0) and then use the MCU to pulse reset to wake it up.
+(see
+[note](https://www.tech-spy.co.uk/2019/04/enable-deep-sleep-esp-01/))
+
+
 
 ## Doco
 
@@ -66,24 +99,4 @@ retransmit, etc.  $21 each for WRL-00691.
   3.7V so we need a small-ish 3.3V LDO.
 * WiFi
    * ESP-01 [data](https://www.microchip.ua/wireless/esp01.pdf)
-
-ESP-01 Power Consumption:  
-* 170mA working worst case
-* 0.9mA "light sleep"
-* 10uA "deep sleep"
-
-Datasheet says "...sleep 300s and waking up to connect to the AP
-(taking about 0.3~1s), the overall average current is less than 1mA.
-Not clear how this is affected if multiple AP must be tried.  Need
-to get some ESP-01 and play with them.
-
-So we're looking at ~1mA minimum average power with capability to
-deliver ~200mA.  For few days running it would be nice to have
-~100mAh.
-
-It seems that on ESP-01 modules you need to wire pin 8 to nRESET so it
-can self-wake out of deep sleep.  Otherwise you can just call
-ESP.deepSleep(0) and then use the MCU to pulse reset to wake it up.
-(see
-[note](https://www.tech-spy.co.uk/2019/04/enable-deep-sleep-esp-01/))
 

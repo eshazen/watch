@@ -4,61 +4,79 @@
 e = 0.1;
 $fn = 48;
 
-dpcb_wid = 31.8;
-dpcb_hgt = 48;
+$t = 0;
+
+dpcb_wid = 33.5;
+dpcb_hgt = 48.3;
 dpcb_thk = 1.6;
+dpcb_sol = 6.0;			/* standoff len */
+dpcb_sod = 5.0;			/* standoff dia */
 
 mm = 25.4;
 
-conn_thk = 0.1*mm;
-conn_pin = 0.64;
-conn_plen = 8.5;
-
-module pin() {
-     translate( [ -conn_pin/2, -conn_pin/2, -conn_plen])
-	  color("gold")
-	  cube( [conn_pin, conn_pin, conn_plen]);
-}
+conn_wid = 20;
+conn_hgt = 6.1;
+conn_thk = 5.3;
 
 module conn() {
-     translate( [-0.2*mm, -0.05*mm, -conn_thk]) {
-     color("black")
-	  cube([0.4*mm, 0.2*mm, conn_thk]);
-     }
-     for( x=[0:3]) {
-	  for( y=[0:1]) {
-	       translate( [ mm*(-0.15+0.1*x), mm*(0.1*y), 0])  pin();
-	  }
-     }
+     translate( [-conn_wid/2, -conn_hgt/2, -conn_thk])
+	  color("white")
+	  cube( [conn_wid, conn_hgt, conn_thk]);
 }
 
+// waveshare 1.54 inch module
 module display() {
      translate( [-dpcb_wid/2, -dpcb_hgt/2, 0]) {
 	  color("darkgreen")
 	       cube( [dpcb_wid, dpcb_hgt, dpcb_thk]);   // PCB
-	  translate( [2.4, 13.26, 1.6])
+	  // display module
+	  translate( [1.2, 5.3, 1.6]) {
+	       color("silver")
+	       cube( [31, 37.3, 1.2]);
+	       // active region
 	       color("white")
-	       cube( [27, 27, 1.18]);
-	  // now to center of connector
-	  translate( [dpcb_wid/2, dpcb_hgt-(7.74/2), 0]) {
-	       conn();
+	       translate( [1.5, 0.5, 1.2])
+		    cube( [28, 28, 0.2]);
 	  }
+	  // connector
+	  translate( [pcb_wid/2, conn_hgt/2, 0])
+	       conn();
+	  // standoffs
+	  sox = dpcb_sod/2;	/* offset from PCB corner */
+	  translate( [0, 0, -dpcb_sol]) {
+	       $fn = 6;
+	       translate( [sox, sox, 0]) cylinder( h=dpcb_sol, d=dpcb_sod);
+	       translate( [dpcb_wid-sox, sox, 0]) cylinder( h=dpcb_sol, d=dpcb_sod);
+	       translate( [sox, dpcb_hgt-sox, 0]) cylinder( h=dpcb_sol, d=dpcb_sod);
+	       translate( [dpcb_wid-sox, dpcb_hgt-sox, 0]) cylinder( h=dpcb_sol, d=dpcb_sod);
+	  }
+	  // components on back
+	  comp_hgt = 2.5;
+	  translate( [4, 5, -comp_hgt])
+	       % cube( [25, 41, comp_hgt]);
      }
 }
 
 // SOP14 for R2025S
-rtc_wid = 10;
-rtc_hgt = 5;
-rtc_pins = 7.4;
-rtc_thk = 3.2;
+// rtc_wid = 10;
+// rtc_hgt = 5;
+// rtc_pins = 7.4;
+// rtc_thk = 3.2;
+
+// DS1339 in 8-TSSOP
+rtc_wid = 3;
+rtc_hgt = 3;
+rtc_pins_wid = 5.0;
+rtc_pins_hgt = 2.3;
+rtc_thk = 1.1;
 
 module rtc() {
      color("black")
 	  translate( [-rtc_wid/2, -rtc_hgt/2, 0])
 	       cube( [rtc_wid, rtc_hgt, rtc_thk]);
      color("silver")
-	  translate( [-rtc_pins/2, -rtc_pins/2, 0])
-	       cube( [rtc_pins, rtc_pins, 0.1]);
+	  translate( [-rtc_pins_wid/2, -rtc_pins_hgt/2, 0])
+	       cube( [rtc_pins_wid, rtc_pins_hgt, 0.1]);
 }
      
 // 100mAh Lipo battery
@@ -95,9 +113,16 @@ module batt() {
 }
 
 
-wf_wid = 14.3;
-wf_hgt = 24.8;
-wf_thk = 4;
+// nRF24
+// wf_wid = 14.3;
+// wf_hgt = 24.8;
+// wf_thk = 4;
+
+// RFM69
+wf_wid = 20;			/* measured from photo */
+wf_hgt = 20;
+wf_thk = 3.2;			/* just a guess */
+
 
 
 module wf() {
@@ -117,11 +142,9 @@ pcb_wid = dpcb_wid;
 pcb_hgt = dpcb_hgt;
 pcb_thk = dpcb_thk;
 
-
-
 // Lipo position for cutout etc
 lp_x = pcb_wid/2;
-lp_y = pcb_hgt-8;
+lp_y = 7.5;
 lp_z = 1+pcb_thk-lp_thk;
 
 lp_gap = 1.0;			// gap around Lipo
@@ -139,11 +162,12 @@ module pcb() {
 	  }
      
 	  // MCU
-	  translate( [pcb_wid/3, pcb_hgt/3, pcb_thk])  import("qfp64.stl");
+	  translate( [pcb_wid/2, 35, pcb_thk])  import("qfp64.stl");
 	  // RTC
-//     translate( [pcb_wid-6, pcb_hgt/3, pcb_thk])  rotate( [0, 0, 90]) rtc();
-	  translate( [pcb_wid/2, pcb_hgt/2+3, 0]) rotate( [0, 180, 0]) rtc();
+//	  translate( [pcb_wid/2, pcb_hgt-27.5, 0]) rotate( [0, 180, 0]) rtc();
+	  translate( [pcb_wid/2, pcb_hgt-27.5, pcb_thk]) rtc();	  
 
+	  // switches
 	  translate( [0, 0, -pcb_thk]) {
 	       translate( [0, 10, 0]) sw(180);
 	       translate( [0, 25, 0]) sw(180);
@@ -153,9 +177,11 @@ module pcb() {
 	       translate( [0, 25, 0]) sw(0);
 	  }
 
-	  translate( [pcb_wid/2, 15, 0])
+	  // radio
+	  translate( [pcb_wid/2, pcb_hgt-18, 0])
 	       rotate( [0, 180, 90]) wf();
 
+	  // battery
 	  translate( [lp_x, lp_y, lp_z])
 	       rotate( [0, 0, 90])
 	       lipo();
@@ -163,9 +189,11 @@ module pcb() {
 }
 
 module guts() {
-     display();
-     // rotate( [180, 0, 0])  translate( [0, -pcb_hgt, pcb_thk+1.5+(1-$t)*5])  pcb();
-     rotate( [180, 0, 0])  translate( [0, 0, pcb_thk+1.5+(1-$t)*5])  pcb();
+//     display();
+     rotate( [180, 0, 0])  translate( [0, 0, dpcb_sol])  pcb();     
+
+// for animation     
+//     rotate( [180, 0, 0])  translate( [0, 0, pcb_thk+1.5+(1-$t)*5])  pcb();
 }
 
 
@@ -214,6 +242,6 @@ module case() {
 
 
 guts();
-% case();
+// % case();
 
 echo("Case L/W/H = ", case_ewid, ", ", case_ehgt, ", ", case_ethk);
