@@ -123,8 +123,6 @@ wf_wid = 20;			/* measured from photo */
 wf_hgt = 20;
 wf_thk = 3.2;			/* just a guess */
 
-
-
 module wf() {
      translate( [-wf_wid/2, -wf_hgt/2, 0])
 	  color("red")
@@ -169,12 +167,10 @@ module pcb() {
 
 	  // switches
 	  translate( [0, 0, -pcb_thk]) {
-	       translate( [0, 10, 0]) sw(180);
-	       translate( [0, 25, 0]) sw(180);
-	  }
-	  translate( [pcb_wid, 0, -pcb_thk]) {
-	       translate( [0, 10, 0]) sw(0);
-	       translate( [0, 25, 0]) sw(0);
+	       translate( [5, 0, 0]) sw(270);
+	       translate( [pcb_wid-5, 0, 0]) sw(270);
+	       translate( [3, pcb_hgt, 0]) sw(90);
+	       translate( [pcb_wid-3, pcb_hgt, 0]) sw(90);
 	  }
 
 	  // radio
