@@ -1,4 +1,6 @@
 (fp_lib_table
   (lib (name "RFM69")(type "KiCad")(uri "${KIPRJMOD}/RFM69.pretty")(options "")(descr ""))
   (lib (name "E-Ink")(type "KiCad")(uri "${KIPRJMOD}/E-Ink.pretty")(options "")(descr ""))
+  (lib (name "TinySwitch")(type "KiCad")(uri "${KIPRJMOD}/TinySwitch.pretty")(options "")(descr ""))
+  (lib (name "Battery")(type "KiCad")(uri "${KIPRJMOD}/Battery.pretty")(options "")(descr ""))
 )
