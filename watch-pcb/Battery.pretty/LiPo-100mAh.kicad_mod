@@ -19,4 +19,9 @@
   (fp_line (start 18 14) (end 0 14) (layer "F.SilkS") (width 0.12) (tstamp c4dcad70-5e1a-4b14-b69e-dc5b8d78118a))
   (fp_line (start 0 0) (end 18 0) (layer "F.SilkS") (width 0.12) (tstamp db643507-b7bc-4b78-8b7d-a3daad95fec8))
   (fp_rect (start -0.5 -0.5) (end 18.5 14.5) (layer "F.CrtYd") (width 0.05) (fill none) (tstamp 759bfb00-5736-43ef-b5ab-de85bd9e45a1))
+  (model "/home/hazen/work/watch/3D/lipo-cube.wrl"
+    (offset (xyz 0 0 -3))
+    (scale (xyz 0.3937 0.3937 0.3937))
+    (rotate (xyz 0 0 90))
+  )
 )

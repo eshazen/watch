@@ -40,4 +40,14 @@
   (pad "14" smd roundrect (at 16 4) (size 2 1) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25) (tstamp 522fc43b-f702-4e4f-ae15-83047fce21bf))
   (pad "15" smd roundrect (at 16 2) (size 2 1) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25) (tstamp a575b37c-d80c-41d6-abf3-4def196bdf2c))
   (pad "16" smd roundrect (at 16 0) (size 2 1) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25) (tstamp bc6915fd-3449-4d99-9beb-4fd10f3c9650))
+  (model "/home/hazen/work/watch/3D/rfm69hcw-difference.wrl"
+    (offset (xyz 8 -7 -0.9))
+    (scale (xyz 0.3937 0.3937 0.3937))
+    (rotate (xyz 0 0 0))
+  )
+  (model "/home/hazen/work/watch/3D/rfm69hcw-difference.step"
+    (offset (xyz 0 -15 -1))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )

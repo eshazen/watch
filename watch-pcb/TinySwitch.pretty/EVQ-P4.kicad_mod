@@ -24,4 +24,9 @@
   (pad "2" smd rect (at 2.275 0) (size 1.45 1.05) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 7a9d0154-e1cb-4133-af49-a77e5d91dcba))
   (pad "3" smd rect (at -3.2 1.75) (size 0.6 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp e092dbea-a0ba-4352-bb3c-279fbc16ec43))
   (pad "4" smd rect (at 3.2 1.75) (size 0.6 0.8) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 7ade8a63-0e03-4fbb-b408-4034e1b9e33f))
+  (model "/home/hazen/work/watch/3D/EVQP4-HB3B_KB3Q_MB3K.STEP"
+    (offset (xyz 0 -2.7 -0.5))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 90 0 180))
+  )
 )
