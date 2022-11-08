@@ -31,4 +31,9 @@
   (pad "6" smd roundrect (at -1.5 13.5) (size 2.286 1.524) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25) (tstamp 30bef701-0edc-453e-abc9-42a44a1694f8))
   (pad "7" smd roundrect (at -1.5 15.5) (size 2.286 1.524) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25) (tstamp 6913d462-5638-47fa-8ecc-1f36030d5425))
   (pad "8" smd roundrect (at -1.5 17.5) (size 2.286 1.524) (layers "B.Cu" "B.Paste" "B.Mask") (roundrect_rratio 0.25) (tstamp a3e5d245-3f9d-4b85-9f48-e93d7fd325ce))
+  (model "/home/hazen/work/watch/3D/watch-Matrix_Union002.step"
+    (offset (xyz 0 -23.6 6))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 -90))
+  )
 )
