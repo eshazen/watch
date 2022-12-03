@@ -23,11 +23,56 @@ WiFi update.
 
 Ordered PCBs and BOM parts (Mouser) on 12/2/22.  
 
+* [schematic](watch-pcb/watch-sch.pdf)
+
+Radio is RFM69HCW (915MHz).  Display is waveshire e-link.  RTC is PCF85263A.
+There's an 8-pin (2x4) 2mm "service" connector with pinout:
+
+| Pin | Function |
+|-----|----------|
+| 1   | 3.3V     |
+| 2   | MOSI     |
+| 3   | MISO     |
+| 4   | SCK      |
+| 5   | nRESET   |
+| 6   | UART TX  |
+| 7   | UART RX  |
+| 8   | GND      |
+
+ATMega328 pin assignments:
+
+| Pin | Function | Notes               |
+|-----|----------|---------------------|
+| PB0 | eRST     | e-ink reset         |
+| PB1 | eDC      | e-ink data/control  |
+| PB2 | RF_CS    | Radio chip select   |
+| PB3 | MOSI     | for radio and e-ink |
+| PB4 | MISO     | radio MISO          |
+| PB5 | SCK      | for radio and e-ink |
+| PB6 | LED1     |                     |
+| PB7 | LED2     |                     |
+|-----|----------|---------------------|
+| PC0 | RF_RST   | Radio reset         |
+| PC1 | SW1      |                     |
+| PC2 | SW2      |                     |
+| PC3 | RTC_INT  | RTC interrupt       |
+| PC4 | RTC_SCL  | RTC I2C clock       |
+| PC5 | RTC_SDA  | RTC I2C data        |
+| PC6 | nRESET   | MCU reset           |
+|-----|----------|---------------------|
+| PD0 | RxD      | UART input data     |
+| PD1 | TxD      | UART output data    |
+| PD2 | SW3      |                     |
+| PD3 | SW4      | (not installed)     |
+| PD5 | DIO0     | Radio DIO0          |
+| PD6 | eCS      | e-ink chip select   |
+| PD7 | eBUSY    | e-ink busy          |
+
+
 3D PCB view: 
 
 ![front](pix/rev1-3D-pcb_top.png) ![back](pix/rev1-3D-pcb_bot.png)
 
-* [schematic](watch-pcb/watch-sch.pdf)
 
 
 ### Display
