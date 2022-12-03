@@ -186,7 +186,7 @@ module pcb() {
 
 module guts() {
        display();
-//     rotate( [180, 0, 0])  translate( [0, 0, dpcb_sol])  pcb();     
+     rotate( [180, 0, 0])  translate( [0, 0, dpcb_sol])  pcb();     
 
 // for animation     
 //     rotate( [180, 0, 0])  translate( [0, 0, pcb_thk+1.5+(1-$t)*5])  pcb();
