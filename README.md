@@ -19,6 +19,17 @@ Some fairly smart algorithm should recognize when not near an AP and give up,
 checking at longer intervals.  A button press should be available to force
 WiFi update.
 
+## Rev 1.0
+
+Ordered PCBs and BOM parts (Mouser) on 12/2/22.  
+
+3D PCB view: 
+
+![front](pix/rev1-3D-pcb_top.png) ![back](pix/rev1-3D-pcb_bot.png)
+
+* [schematic](watch-pcb/watch-sch.pdf)
+
+
 ### Display
 
 Ordered a black/red display from buydisplay.com.  This works ok but has
