@@ -53,7 +53,7 @@ ATMega328 pin assignments:
 | PB7 | LED2     |                     |
 |-----|----------|---------------------|
 | PC0 | RF_RST   | Radio reset         |
-| PC1 | SW1      |                     |
+| PC1 | SW1      | (not installed)     |
 | PC2 | SW2      |                     |
 | PC3 | RTC_INT  | RTC interrupt       |
 | PC4 | RTC_SCL  | RTC I2C clock       |
@@ -63,7 +63,7 @@ ATMega328 pin assignments:
 | PD0 | RxD      | UART input data     |
 | PD1 | TxD      | UART output data    |
 | PD2 | SW3      |                     |
-| PD3 | SW4      | (not installed)     |
+| PD3 | SW4      |                     |
 | PD5 | DIO0     | Radio DIO0          |
 | PD6 | eCS      | e-ink chip select   |
 | PD7 | eBUSY    | e-ink busy          |
