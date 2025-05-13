@@ -135,7 +135,7 @@ ESP.deepSleep(0) and then use the MCU to pulse reset to wake it up.
 ## Doco
 
 * Display: [Mfgr page](https://www.buydisplay.com/red-1-54-inch-e-ink-display-module-200x200-for-arduino-raspberry-pi)
-* eInk.md
+* [eInk.md](eInk.md)
 
 ## Parts?
 
