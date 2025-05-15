@@ -25,7 +25,8 @@ Ordered PCBs and BOM parts (Mouser) on 12/2/22.
 
 * [schematic](watch-pcb/watch-sch.pdf)
 
-Radio is RFM69HCW (915MHz).  Display is waveshire e-link.  RTC is PCF85263A.
+Radio is RFM69HCW (915MHz).  Display is waveshire e-link 1.54 in
+(200x200 resolution).  RTC is PCF85263A.
 There's an 8-pin (2x4) 2mm "service" connector with pinout:
 
 | Pin | Function |
