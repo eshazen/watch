@@ -5,27 +5,15 @@
 
 #include <SPI.h>
 #include "epd1in54_V2.h"
-// #include "imagedata.h"
 #include "epdpaint.h"
 #include <stdio.h>
 
 Epd epd;
-unsigned char image[1024];
+unsigned char image[1024];	// big enough for 128x64
 Paint paint(image, 0, 0);
 
-unsigned long time_start_ms;
-unsigned long time_now_s;
 #define COLORED     0
 #define UNCOLORED   1
-
-unsigned char seglen = 35;
-unsigned char segwid = 5;
-
-unsigned char dighgt = seglen*2+segwid;
-unsigned char digdx = seglen + 2* segwid;
-unsigned char x = 5;
-
-int tyme = 0;
 
 int hours = 1;
 int minutes = 15;
@@ -39,7 +27,7 @@ void setup()
   epd.Clear();
 
   paint.SetWidth(64);
-  paint.SetHeight(64);
+  paint.SetHeight(128);
 
   paint.Clear(UNCOLORED);
 
