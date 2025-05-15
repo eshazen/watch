@@ -3,32 +3,25 @@
 // bitmap, divided into smaller physical bitmaps.
 // As each physical bitmap is completed, send to device
 //
-#include "DisplayList.hh"
+#include <stdio.h>
+#include "display_list.h"
 // #include "epdpaint.h"
+// #include "test_paint.h"
 
-#include "test_paint.h"
+// #define DEBUG
 
+static int dl_xmin, dl_xmax, dl_ymin, dl_ymax;
+static draw_func dl_draw;
 
-DisplayList::DisplayList( Paint* pp, int width, int height) {
-  this->paint = pp;
-  this->width = width % 8 ? width + 8 - (width % 8) : width;
-  this->height = height;
-}
-
-int DisplayList::GetWidth(void) {
-    return this->width;
-}
-
-void DisplayList::SetWidth(int width) {
-    this->width = width % 8 ? width + 8 - (width % 8) : width;
-}
-
-int DisplayList::GetHeight(void) {
-    return this->height;
-}
-
-void DisplayList::SetHeight(int height) {
-    this->height = height;
+void dl_setup( draw_func df, int xmin, int xmax, int ymin, int ymax) {
+#ifdef DEBUG
+  printf("dl_setup( %d, %d, %d, %d)\n", xmin, xmax, ymin, ymax);
+#endif
+  dl_draw = df;
+  dl_xmin = xmin;
+  dl_xmax = xmax;
+  dl_ymin = ymin;
+  dl_ymax = ymax;
 }
 
 //
@@ -36,7 +29,7 @@ void DisplayList::SetHeight(int height) {
 // clip against region size (width, height) with offset at xoff, yoff
 // call paint->DrawPixel() for any pixels which fall in clip region
 //
-void DisplayList::DrawFromList( int npoint, int* xlist, int* ylist, byte* draw, int xoff, int yoff, int colored) {
+void dl_draw_from_list( int npoint, int* xlist, int* ylist, unsigned char* draw, int color) {
   if( npoint < 2)
     return;
   int x0 = xlist[0];
@@ -46,14 +39,14 @@ void DisplayList::DrawFromList( int npoint, int* xlist, int* ylist, byte* draw, 
     x1 = xlist[i];
     y1 = ylist[i];
     if( draw[i]) { 		// draw a line
-      DrawClipped( x0, y0, x1, y1, xoff, xoff+width, yoff, yoff+width, colored);
+      dl_draw_clipped_line( x0, y0, x1, y1, color);
     }
     x0 = x1;
     y0 = y1;
   }
 }
 
-void DisplayList::DrawClipped( int x0, int y0, int x1, int y1, int xmin, int xmax, int ymin, int ymax, int colored) {
+void dl_draw_clipped_line( int x0, int y0, int x1, int y1, int color) {
   /* Bresenham algorithm */
   int dx = x1 - x0 >= 0 ? x1 - x0 : x0 - x1;
   int sx = x0 < x1 ? 1 : -1;
@@ -62,8 +55,20 @@ void DisplayList::DrawClipped( int x0, int y0, int x1, int y1, int xmin, int xma
   int err = dx + dy;
 
   while((x0 != x1) && (y0 != y1)) {
-    if ( x0 >= xmin && x0 < xmax && y0 >= ymin && y0 < ymax)
-      paint->DrawPixel(x0, y0 , colored);
+#ifdef DEBUG
+    printf("pixel: (%d, %d)... ", x0, y0);
+#endif    
+    if ( x0 >= dl_xmin && x0 < dl_xmax && y0 >= dl_ymin && y0 < dl_ymax) {
+#ifdef DEBUG
+      printf("draw\n");
+#endif      
+      dl_draw( x0, y0, color);
+    } else {
+#ifdef DEBUG
+      printf("\n");
+#endif
+      ;
+    }
     if (2 * err >= dy) {     
       err += dy;
       x0 += sx;
