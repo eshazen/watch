@@ -10,7 +10,7 @@ Unit of measure: FL_COORD_PIXEL
 Name: watch_top
 Width: 434
 Height: 466
-Number of Objects: 3
+Number of Objects: 5
 
 --------------------
 class: FL_BOX
@@ -51,7 +51,7 @@ argument: 0
 --------------------
 class: FL_BOX
 type: FL_UP_BOX
-box: 80 100 280 300
+box: 80 100 200 200
 boxtype: FL_UP_BOX
 colors: FL_WHITE FL_COL1
 alignment: FL_ALIGN_CENTER
@@ -65,6 +65,52 @@ gravity: FL_NoGravity FL_NoGravity
 name: screen
 callback: 
 argument: 
+
+--------------------
+class: FL_VALSLIDER
+type: FL_HOR_BROWSER_SLIDER
+box: 80 320 180 30
+boxtype: FL_DOWN_BOX
+colors: FL_COL1 FL_COL1
+alignment: FL_ALIGN_BOTTOM
+style: FL_NORMAL_STYLE
+size: FL_TINY_SIZE
+lcol: FL_BLACK
+label: hour
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: s_hour
+callback: cb_hour
+argument: 0
+return: FL_RETURN_CHANGED
+    bounds: 0 11
+    value: 0
+    increment: 1 1
+    step: 1
+
+--------------------
+class: FL_VALSLIDER
+type: FL_HOR_BROWSER_SLIDER
+box: 80 370 180 30
+boxtype: FL_DOWN_BOX
+colors: FL_COL1 FL_COL1
+alignment: FL_ALIGN_BOTTOM
+style: FL_NORMAL_STYLE
+size: FL_TINY_SIZE
+lcol: FL_BLACK
+label: minutes
+shortcut: 
+resize: FL_RESIZE_ALL
+gravity: FL_NoGravity FL_NoGravity
+name: s_min
+callback: cb_min
+argument: 0
+return: FL_RETURN_CHANGED
+    bounds: 0 59
+    value: 0
+    increment: 1 1
+    step: 1
 
 ==============================
 create_the_forms
