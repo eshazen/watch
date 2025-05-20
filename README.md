@@ -1,5 +1,8 @@
 # Smart Watch
 
+See also:  [SOFTWARE.md](SOFTWARE.md)
+<br> [BUILD.md](BUILD.md)
+
 Imagining a device similar to a smart watch, but not intended to
 connect to a phone and generate alerts.  Instead, I'd like:
 
