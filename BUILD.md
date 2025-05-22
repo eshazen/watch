@@ -17,3 +17,7 @@ It could even have GPS so it knows it's location.
 First step is to assemble a board and get the display,
 RTC, buttons etc working.
 
+missing RTC crystal!
+maybe 300-8301-ND
+
+
