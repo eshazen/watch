@@ -20,4 +20,9 @@ RTC, buttons etc working.
 missing RTC crystal!
 maybe 300-8301-ND
 
+# 2025-05-31
 
+* ISP, blinky and switches working!
+* UART working after wire patch to Rx (open PCB trace??)
+* RTC is missing crystal.  Ordered some from Amazon
+* Found an I2C library from the BlinkyColorPOV project and copied to `i2c.c`.

@@ -1,5 +1,13 @@
 # Watch software
 
+## UART
+
+UART working at 1200 baud (not 9600) with default 1MHz clock.
+
+Need to find / recreate my_gets using the stdio hack.
+
+## Display
+
 It would be nice to display an analog clock face.
 This is complicated by the fact that the E-Ink display
 is 200x200 and we don't have enough RAM (200x200/8=5000 bytes)
