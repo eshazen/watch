@@ -34,7 +34,7 @@ DUDEMCU = m328
 # DUDEMCU = t85
 AVRDUDE  = avrdude $(DUDEPORT) -p $(DUDEMCU) -y -u 
 
-objects = ${MAIN}.o uart.o parse.o
+objects = ${MAIN}.o uart.o parse.o my_gets.o
 
 headers =
 
