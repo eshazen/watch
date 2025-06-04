@@ -1,5 +1,46 @@
 # Watch software
 
+Initial software outline:
+
+* Initialize RTC for 1 minute periodic interrupt
+* Initialize AVR to go to sleep and wake on pin change interrupt from RTC
+* On wakeup:  display time
+
+Also need to provide some interface to set the time
+
+## RTC
+
+Basically working.  Time registers can be R/W and update as expected.
+
+### Initialization
+
+Set `TSPM[1:0] = 1` (nINTB output)
+
+Set `INTA_enable` (addr 0x29) to `b'01000000'` (enable only periodic interrupt)
+
+Set `Function` (addr 0x28) to `b'01000111'` (1 min periodic) -or-
+<br> `b'00100111'` (1 sec periodic)
+
+### Set / Read time
+
+Time is in addresses 1-3 as BCD
+
+### Interrupts
+
+Setup AVR to interrupt on pin change on PC3.
+Sleep to power-down mode and wake on interrupt.
+
+Some example code:
+
+```
+set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+sleep_enable();
+sleep_mode();
+// wait for wake-up
+sleep_disable();
+power_all_enable();
+```
+
 ## UART
 
 UART working at 1200 baud (not 9600) with default 1MHz clock.

@@ -760,6 +760,179 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:Crystal"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Y"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Crystal"
+				(at 0 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Two pin crystal"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "quartz ceramic resonator oscillator"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Crystal*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Crystal_0_1"
+				(polyline
+					(pts
+						(xy -2.54 0) (xy -1.905 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.905 -1.27) (xy -1.905 1.27)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.143 2.54)
+					(end 1.143 -2.54)
+					(stroke
+						(width 0.3048)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -1.27) (xy 1.905 1.27)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 0) (xy 1.905 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "Crystal_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 1.27)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 1.27)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:LED"
 			(pin_numbers
 				(hide yes)
@@ -3421,6 +3594,18 @@
 		)
 		(uuid "1b98f775-2d0f-4695-97d8-76559776c160")
 	)
+	(text "Remove I2C pull-ups\nand use onboard?"
+		(exclude_from_sim no)
+		(at 129.794 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(color 255 0 0 1)
+			)
+			(justify left)
+		)
+		(uuid "20782360-e172-4613-98e6-1f9f0ca86298")
+	)
 	(text "ATMega328 CPU\n\n(should really be e.g. ATMega1281\nbut supply chain...)"
 		(exclude_from_sim no)
 		(at 71.12 184.15 0)
@@ -3464,6 +3649,18 @@
 		)
 		(uuid "36ce4f22-f38c-461e-83c7-0664b4bcd461")
 	)
+	(text "Remove R1, R2\nor increase?"
+		(exclude_from_sim no)
+		(at 24.892 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(color 255 0 0 1)
+			)
+			(justify left)
+		)
+		(uuid "3a35e700-b526-4256-8ba3-e58fdc7a2797")
+	)
 	(text "UPCO GRAPHICS SYSTEMS"
 		(exclude_from_sim no)
 		(at 180.34 177.8 0)
@@ -3495,6 +3692,17 @@
 			)
 		)
 		(uuid "56e3930e-79d7-428b-8c58-7cfe2d5b5611")
+	)
+	(text "Add Y1"
+		(exclude_from_sim no)
+		(at 139.954 112.268 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(color 255 0 0 1)
+			)
+		)
+		(uuid "8dec2c55-1b3d-408c-ab3b-d4c4783c0f92")
 	)
 	(text "Battery"
 		(exclude_from_sim no)
@@ -3546,6 +3754,7 @@
 		(effects
 			(font
 				(size 1.27 1.27)
+				(color 255 0 0 1)
 			)
 		)
 		(uuid "f805bec9-aad5-4837-abf7-fb6c88957904")
@@ -3950,6 +4159,16 @@
 	)
 	(wire
 		(pts
+			(xy 143.51 110.49) (xy 143.51 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b100522-9702-490f-a253-a0a91bd8de1e")
+	)
+	(wire
+		(pts
 			(xy 83.82 74.93) (xy 83.82 77.47)
 		)
 		(stroke
@@ -4117,6 +4336,16 @@
 			(type default)
 		)
 		(uuid "469b2998-9256-43cf-bf66-5eb5c8d3c64d")
+	)
+	(wire
+		(pts
+			(xy 147.32 102.87) (xy 147.32 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a70122a-1ad8-4e69-8742-006b4c4270fd")
 	)
 	(wire
 		(pts
@@ -4317,6 +4546,16 @@
 			(type default)
 		)
 		(uuid "70d8849d-e2f2-454a-843a-481c91015b31")
+	)
+	(wire
+		(pts
+			(xy 151.13 106.68) (xy 151.13 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7263ce5f-2460-4f8a-b381-efa1ceb04bde")
 	)
 	(wire
 		(pts
@@ -4810,6 +5049,16 @@
 	)
 	(wire
 		(pts
+			(xy 143.51 100.33) (xy 147.32 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2209735-e066-4d3b-9402-5852c84dd62b")
+	)
+	(wire
+		(pts
 			(xy 157.48 72.39) (xy 160.02 72.39)
 		)
 		(stroke
@@ -4817,6 +5066,16 @@
 			(type default)
 		)
 		(uuid "c81cf62c-310e-4c59-ba61-4aba0b54f92f")
+	)
+	(wire
+		(pts
+			(xy 147.32 106.68) (xy 151.13 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca5c3a36-10d8-49ab-9994-ce9fa76ed2af")
 	)
 	(wire
 		(pts
@@ -7537,6 +7796,73 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:Crystal")
+		(at 147.32 110.49 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "9faa183c-b41b-4175-8af6-471927ffe63d")
+		(property "Reference" "Y1"
+			(at 144.526 114.046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "32.768kHz"
+			(at 152.146 114.046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 147.32 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 147.32 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Two pin crystal"
+			(at 147.32 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3f805936-8e67-4cd6-9c80-79668800608d")
+		)
+		(pin "2"
+			(uuid "35f12897-1069-451a-b035-59c8cd64388e")
+		)
+		(instances
+			(project ""
+				(path "/970f2a53-dbf3-44e1-b370-568bf247978d"
+					(reference "Y1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 97.79 63.5 0)
 		(unit 1)
@@ -7850,7 +8176,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 153.67 74.295 0)
+			(at 160.02 74.422 0)
 			(effects
 				(font
 					(size 1.27 1.27)
