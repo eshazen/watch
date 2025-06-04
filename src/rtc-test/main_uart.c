@@ -2,6 +2,8 @@
  * interative test for watch
  */
 
+// #define DEBUG
+
 #include <stdio.h>
 #include <string.h>
 #include <avr/io.h>
@@ -30,6 +32,14 @@ static uint8_t i2c_adr;
 static uint8_t i2c_wdata[MAXI2C];
 static uint8_t i2c_rdata[MAXI2C];
 
+void chk_err( uint8_t rc) {
+  if( rc) {
+    snprintf( buff, sizeof(buff), "I2C_err: 0x%02x", rc);
+    puts(buff);
+  }
+}
+
+
 int main (void)
 {
   unsigned char c = ' ';
@@ -45,32 +55,51 @@ int main (void)
   puts("UART Test");
 
   while( 1) {
+    putchar('>');
     my_gets( buff, sizeof(buff));
     int argc = parse( buff, argv, iargv, MAXARG);
     char cmd = toupper( *argv[0]);
+    char cmd2 = toupper( argv[0][1]);
     switch( cmd) {
     case 'H':
       puts("W <tadr> <radr> [data...]");
       puts("R <tadr> <radr> <count>");
+      puts("RR ... repeat");
       break;
     case 'W':			/* I2C write */
+      // iargv[1] = I2C target address
+      // iargv[2] = chip register address
+      // iargv[3..n] = data
       // copy the register address
       i2c_adr = iargv[2];
       // copy the write data
       for( int i=2; i<argc; i++)
 	i2c_wdata[i-1] = iargv[i];
       rc = i2c_io( iargv[1], &i2c_adr, 1, i2c_wdata, argc-2, NULL, 0);
-      if( rc)
-	puts("I2C err");
+      chk_err(rc);
       break;
     case 'R':
+      // iargv[1] = I2c target address
+      // iargv[2] = chip register address
+      // iargv[3] = byte count
       // copy the register address
       i2c_adr = iargv[2];
+#ifdef DEBUG
+      snprintf( buff, sizeof(buff), "ad: %02x ra: %02x count: %d",
+		iargv[1], i2c_adr, iargv[3]);
+      puts( buff);
+#endif      
       rc = i2c_io( iargv[1], &i2c_adr, 1, NULL, 0, i2c_rdata, iargv[3]);
-      if( rc)
-	puts("I2C err");
-      for( int i=0; i<iargv[3]; i++)
-	snprintf( buff, sizeof(buff), "%d: %02x\n", i, i2c_rdata[i]);
+      chk_err(rc);
+      for( int i=0; i<iargv[3]; i++) {
+	snprintf( buff, sizeof(buff), "%d: 0x%02x (%d)", i, i2c_rdata[i], i2c_rdata[i]);
+	puts( buff);
+      }
+      if( cmd2 == 'R') {	/* repeat until key pressed */
+	while( !USART0CharacterAvailable()) {
+	  rc = i2c_io( iargv[1], &i2c_adr, 1, NULL, 0, i2c_rdata, iargv[3]);
+	}
+      }
       break;
     }
   }

@@ -50,7 +50,7 @@ int USART0ReceiveByte( FILE *stream)
   while(!(UCSR0A&(1<<RXC0))){};
   // Return received data
   c = UDR0;
-  USART0SendByte( c, NULL);
+  // USART0SendByte( c, NULL);
   if(c == '\r') {
     c = '\n';
     USART0SendByte( c, NULL);
