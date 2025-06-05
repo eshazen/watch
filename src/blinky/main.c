@@ -17,26 +17,26 @@ int main (void)
 
   while( 1) {
 
-    if( SW1_PRESSED)
-      LED_PORT |= _BV(LED1_BIT);
-    else
-      LED_PORT &= ~_BV(LED1_BIT);
-
-    if( SW3_PRESSED)
-      LED_PORT |= _BV(LED2_BIT);
-    else
-      LED_PORT &= ~_BV(LED2_BIT);
+//    if( SW1_PRESSED)
+//      LED_PORT |= _BV(LED1_BIT);
+//    else
+//      LED_PORT &= ~_BV(LED1_BIT);
+//
+//    if( SW3_PRESSED)
+//      LED_PORT |= _BV(LED2_BIT);
+//    else
+//      LED_PORT &= ~_BV(LED2_BIT);
       
 	
 
-//    LED_PORT |= (1 << LED1_BIT);
-//    _delay_ms( 500);
-//    LED_PORT &= ~(1 << LED1_BIT);
-//    _delay_ms( 500);
-//    LED_PORT |= (1 << LED2_BIT);
-//    _delay_ms( 500);
-//    LED_PORT &= ~(1 << LED2_BIT);
-//    _delay_ms( 500);
+    LED_PORT |= (1 << LED1_BIT);
+    _delay_ms( 500);
+    LED_PORT &= ~(1 << LED1_BIT);
+    _delay_ms( 500);
+    LED_PORT |= (1 << LED2_BIT);
+    _delay_ms( 500);
+    LED_PORT &= ~(1 << LED2_BIT);
+    _delay_ms( 500);
   }
 }
 

@@ -10,11 +10,15 @@
 #include <util/delay.h>
 #include <stdint.h>
 #include <ctype.h>
+#include <avr/pgmspace.h>
+
 #include "uart.h"
 #include "my_gets.h"
 #include "watch.h"
 #include "parse.h"
 #include "i2c.h"
+
+#include "spi.h"
 
 // create a file pointer for read/write to USART0
 FILE usart0_str = FDEV_SETUP_STREAM(USART0SendByte, USART0ReceiveByte, _FDEV_SETUP_RW);
@@ -52,6 +56,8 @@ int main (void)
   stdout = &usart0_str;		/* connect UART to stdout */
   stdin = &usart0_str;		/* connect UART to stdin */
 
+  spi_init();
+
   puts("UART Test");
 
   while( 1) {
@@ -62,9 +68,13 @@ int main (void)
     char cmd2 = toupper( argv[0][1]);
     switch( cmd) {
     case 'H':
-      puts("W <tadr> <radr> [data...]");
-      puts("R <tadr> <radr> <count>");
-      puts("RR ... repeat");
+      puts_P( PSTR("W <tadr> <radr> [data...]"));
+      puts_P( PSTR("R <tadr> <radr> <count>"));
+      puts_P( PSTR("S <data>"));
+      puts_P( PSTR("RR ... repeat"));
+      break;
+    case 'S':			/* SPI write */
+      spi_transmit( iargv[1]);
       break;
     case 'W':			/* I2C write */
       // iargv[1] = I2C target address

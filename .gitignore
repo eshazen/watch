@@ -32,3 +32,4 @@ fp-info-cache
 *.hex
 *.map
 *.elf
+*.lst

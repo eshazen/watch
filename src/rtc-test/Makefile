@@ -7,9 +7,9 @@ MAIN = main_uart
 # MCU = attiny85
 MCU = atmega328
 
-F_OSC = 1000000
+# F_OSC = 1000000
 # 8 MHz for on-board oscillator
-# F_OSC = 8000000
+F_OSC = 8000000
 
 # 16MHz for Stock arduino
 # F_OSC = 16000000
@@ -34,9 +34,9 @@ DUDEMCU = m328
 # DUDEMCU = t85
 AVRDUDE  = avrdude $(DUDEPORT) -p $(DUDEMCU) -y -u 
 
-objects = ${MAIN}.o uart.o parse.o my_gets.o i2c.o
+objects = ${MAIN}.o uart.o parse.o my_gets.o i2c.o spi.o
 
-headers =
+headers = spi.h i2c.h my_gets.h parse.h uart.h
 
 all: $(objects)  ${MAIN}.hex list
 
