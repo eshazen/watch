@@ -52,6 +52,9 @@ int main (void)
   SW1_PORT |= _BV(SW1_BIT);	/* pull-ups */
   SW2_PORT |= _BV(SW2_BIT) | _BV(SW3_BIT);
 
+  // nSS (PB2) must be output to avoid SPI problems
+  DDRB |= _BV(2);
+
   USART0Init();
   stdout = &usart0_str;		/* connect UART to stdout */
   stdin = &usart0_str;		/* connect UART to stdin */

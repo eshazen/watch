@@ -56,6 +56,9 @@ int main( int argc, char *argv[]) {
   SW1_PORT |= _BV(SW1_BIT);	/* pull-ups */
   SW2_PORT |= _BV(SW2_BIT) | _BV(SW3_BIT);
 
+  // nSS (PB2) must be output to avoid SPI problems
+  DDRB |= _BV(2);
+
   set_io_bits( &LED_PORT, _BV(LED1_BIT));
   set_io_bits( &LED_PORT, _BV(LED2_BIT));
 

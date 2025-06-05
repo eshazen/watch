@@ -30,7 +30,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define DEBUG
+// #define DEBUG
 
 #ifdef BAREMETAL
 #include <avr/pgmspace.h>
