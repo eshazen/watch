@@ -13,18 +13,18 @@ typedef enum {
 } t_draw;
 
 typedef struct {
-  t_draw draw;
   double x, y;
+  t_draw draw;
 } d_point;
 
 typedef struct {
-  t_draw draw;
   int x, y;
+  t_draw draw;
 } i_point;
 
 typedef struct {
-  t_draw draw;
   uint8_t x, y;
+  t_draw draw;
 } b_point;
 
 

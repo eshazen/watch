@@ -38,6 +38,7 @@
 
 #ifdef BAREMETAL
 
+// define a few things to provide similarity to Arduino world
 #define HIGH 1
 #define LOW 0
 
@@ -63,11 +64,13 @@
 #define BUSY_PIN_DDR DDRD
 #define BUSY_PIN_PIN PIND
 
+// bogus pin numbers used as index into the portz[] struct array below
 #define RST_PIN         0
 #define DC_PIN          1
 #define CS_PIN          2
 #define BUSY_PIN        3
 
+// define a struct so we can read/write by pin number
 typedef struct {
   volatile uint8_t* port;
   volatile uint8_t* pin;
@@ -82,6 +85,9 @@ static a_port portz[] = {
 };
 
 #else
+
+//---------- Arduino version ----------
+
 // Pin definition
 #define RST_PIN         8
 #define DC_PIN          9

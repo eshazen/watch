@@ -27,6 +27,11 @@
 #include <stdio.h>
 #include <avr/pgmspace.h>
 
+//------------------------------------------------------------------------
+// Provides hardware interface.  modified (see BAREMETAL) to work with
+// simple spi.c interface using AVR hardware SPI
+//------------------------------------------------------------------------
+
 // #define DEBUG
 
 #include "epdif.h"

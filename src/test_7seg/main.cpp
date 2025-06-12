@@ -77,6 +77,7 @@ int main( int argc, char *argv[]) {
   puts_P( PSTR("init"));
   epd.Clear();
 
+  // 64 * 128 * 8 = 1024 (size of the image bitmap)
   paint.SetWidth(64);
   paint.SetHeight(128);
 

@@ -30,14 +30,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// #define DEBUG
-
-#ifdef BAREMETAL
-#include <avr/pgmspace.h>
-#endif
-
 #include "epd1in54_V2.h"
-
 
 // waveform full refresh
 unsigned char WF_Full_1IN54[159] =
@@ -106,9 +99,6 @@ Epd::Epd()
  */
 void Epd::SendCommand(unsigned char command)
 {
-#ifdef DEBUG
-  puts_P( PSTR("->scmd"));
-#endif  
   DigitalWrite(dc_pin, LOW);
   SpiTransfer(command);
 }
@@ -118,9 +108,6 @@ void Epd::SendCommand(unsigned char command)
  */
 void Epd::SendData(unsigned char data)
 {
-#ifdef DEBUG
-  puts_P( PSTR("->sdat"));
-#endif  
   DigitalWrite(dc_pin, HIGH);
   SpiTransfer(data);
 }
@@ -132,9 +119,6 @@ void Epd::WaitUntilIdle(void)
 {
   while(DigitalRead(busy_pin) == 1) {      //LOW: idle, HIGH: busy
     DelayMs(100);
-#ifdef DEBUG
-    puts_P( PSTR("busy"));
-#endif
   }
   DelayMs(200);
 }
@@ -228,34 +212,13 @@ int Epd::LDirInit(void)
   if (IfInit() != 0) {
     return -1;
   }
-#ifdef DEBUG
-  puts_P( PSTR("ifinit"));
-#endif
   /* EPD hardware init start */
   Reset();
-#ifdef DEBUG
-  puts_P( PSTR("reset"));
-#endif
   WaitUntilIdle();
-#ifdef DEBUG
-  puts_P( PSTR("idle"));
-#endif
   SendCommand(0x12);  //SWRESET
-#ifdef DEBUG
-  puts_P( PSTR("cmd"));
-#endif  
   WaitUntilIdle();
-#ifdef DEBUG
-  puts_P( PSTR("idle2"));
-#endif  
   SendCommand(0x01); //Driver output control
-#ifdef DEBUG
-  puts_P( PSTR("cmd1"));
-#endif  
   SendData(0xC7);
-#ifdef DEBUG
-  puts_P( PSTR("data1"));
-#endif  
   SendData(0x00);
   SendData(0x00);
   SendCommand(0x11); //data entry mode
@@ -286,19 +249,10 @@ int Epd::LDirInit(void)
   SendCommand(0x4F);   // set RAM y address count to 0X199;
   SendData(0xC7);
   SendData(0x00);
-#ifdef DEBUG
-  puts_P( PSTR("cmds"));
-#endif  
   WaitUntilIdle();
-#ifdef DEBUG
-  puts_P( PSTR("idle3"));
-#endif  
 
   SetLut(WF_Full_1IN54);
   /* EPD hardware init end */
-#ifdef DEBUG
-  puts_P( PSTR("init_e"));
-#endif  
 
   return 0;
 }
@@ -311,25 +265,13 @@ int Epd::LDirInit(void)
  */
 void Epd::Reset(void)
 {
-#ifdef DEBUG
-  puts_P( PSTR("->reset"));
-#endif  
   DigitalWrite(reset_pin, HIGH);
-#ifdef DEBUG
-  puts_P( PSTR("rst1"));
-#endif
   DelayMs(20);
   // _delay_ms(20);
-#ifdef DEBUG
-  puts_P( PSTR("rst2"));
-#endif  
   DigitalWrite(reset_pin, LOW);                //module reset
   DelayMs(5);
   DigitalWrite(reset_pin, HIGH);
   DelayMs(20);
-#ifdef DEBUG
-  puts_P( PSTR("reset->"));
-#endif  
 }
 
 void Epd::Clear(void)

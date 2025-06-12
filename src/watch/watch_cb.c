@@ -17,7 +17,7 @@ static int win_x0, win_y0, win_wid, win_hgt;
 // which "knows" the coordinates and size of the region to draw in
 void draw_point( int x, int y, int color) {
   // clip to region
-  printf("(%d, %d) %d", x, y, color);
+  printf("draw_point(%d, %d) %d", x, y, color);
   if( x > 0 && x < win_wid && y > 0 && y < win_wid) {
     fl_point( x + win_x0, y + win_y0, color);
     printf(" -draw\n");
@@ -50,18 +50,22 @@ void cb_clock( FL_OBJECT * ob,
 
   fl_rectf( win_x0, win_y0, win_wid, win_hgt, FL_WHITE);
 
-  dl_draw_from_list( FL_RED, clock_tics);
+  dl_draw_from_list( FL_RED, clock_tics, 999);
   // index into minutes
   
 
   int szm = sizeof(clock_minutes)/60; /* size of one minute in bytes */
   b_point* ptm = clock_minutes + minutes * szm; /* point to start */
-  dl_draw_from_list( FL_BLUE, ptm);
+  int npm = szm / sizeof(b_point);
+  dl_draw_from_list( FL_BLUE, ptm, npm);
+
   // adjust hours from 0..12 to 0..60
   hours = (hours%12)*5 + (float)(minutes/60.)*5;
+
   szm = sizeof(clock_hours)/60; /* size of one minute */
   ptm = clock_hours + hours * szm; /* point to start */
-  dl_draw_from_list( FL_GREEN, ptm);
+  npm = szm / sizeof(b_point);
+  dl_draw_from_list( FL_GREEN, ptm, npm);
 }
 
 
