@@ -24,7 +24,7 @@ int main( int argc, char *argv[]) {
   scale = 99;			/* default for 200x200 display */
   offset = 100;
 
-  a_point p_end = { -1, 0., 0. };
+  d_point p_end = { P_END, 0., 0. };
 
   for( int i=1; i<argc; i++) {
     if( *argv[i] == '-') {
@@ -58,7 +58,7 @@ int main( int argc, char *argv[]) {
   npt = 0;
 
   printf("// ----- auto-generated clock display tables -----\n");
-  printf("  unsigned char clock_tics[] = {\n");
+  printf("  b_point clock_tics[] = {\n");
   // draw tics
   // first the quarter hours
   for( int i=0; i<=45; i+=15)
@@ -71,8 +71,8 @@ int main( int argc, char *argv[]) {
 
 
   // minute hands
-    printf("// ----- minute hand, 60 positions -----\n");
-    printf("  unsigned char clock_minutes[] = {\n");
+  printf("// ----- minute hand, 60 positions -----\n");
+  printf("  b_point clock_minutes[] = {\n");
   for( int s=0; s<60; s++) {
     printf("// min_hand_%02d:\n", s);
     //    printf(" {\n");
@@ -85,7 +85,7 @@ int main( int argc, char *argv[]) {
 
   // hour hands
   printf("// ----- hour hand, 60 positions -----\n");
-  printf("  unsigned char clock_hours[] = {\n");
+  printf("  b_point clock_hours[] = {\n");
   for( int s=0; s<60; s++) {
     printf("// hr_hand_%02d:\n", s);
     // printf("{\n");

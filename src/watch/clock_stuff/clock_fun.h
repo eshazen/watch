@@ -8,6 +8,8 @@
 #include <ctype.h>
 #include <stdint.h>
 
+#include "point.h"
+
 #define PI (3.14159265)
 
 // angle in radians to correct for CRT rotation
@@ -16,18 +18,12 @@
 // Could also use to rotate display for other purposes
 #define CRT_ROT (PI)
 
-typedef struct {
-  int draw;
-  double x, y;
-} a_point;
-
-
-a_point rotate( a_point p, double theta);
+d_point rotate( d_point p, double theta);
 void draw_hand( int pos, double wid, double len);
-void print_point( a_point);
+void print_point( d_point);
 void draw_tick( int pos, double inner, double outer);
 
-CLOCK_FUN_EXT int avr_progmem;	/* flat: AVR flash memory output */
+CLOCK_FUN_EXT int avr_progmem;	/* flag: AVR flash memory output */
 CLOCK_FUN_EXT int ps;		/* flag: postscript output */
 CLOCK_FUN_EXT double offset;
 CLOCK_FUN_EXT double scale;

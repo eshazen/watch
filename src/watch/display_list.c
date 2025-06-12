@@ -5,10 +5,8 @@
 //
 #include <stdio.h>
 #include "display_list.h"
-// #include "epdpaint.h"
-// #include "test_paint.h"
 
-// #define DEBUG
+#define DEBUG
 
 static int dl_xmin, dl_xmax, dl_ymin, dl_ymax;
 static draw_func dl_draw;
@@ -24,21 +22,35 @@ void dl_setup( draw_func df, int xmin, int xmax, int ymin, int ymax) {
   dl_ymax = ymax;
 }
 
+#ifdef DEBUG
+void dump_point( b_point* p) {
+  printf("(%d, %d) %d\n", p->x, p->y, p->draw);
+}
+#endif
+
 //
-// traverse list of npoint points with coords in (xlist, ylist) and draw/move flag in draw
+// draw from a list of points until "draw" matches stop
 // clip against region size (width, height) with offset at xoff, yoff
-// call paint->DrawPixel() for any pixels which fall in clip region
+// 
 //
-void dl_draw_from_list( int npoint, int* xlist, int* ylist, unsigned char* draw, int color) {
-  if( npoint < 2)
+void dl_draw_from_list( int color, b_point* list) {
+  if( list[0].draw <= P_MOVE)	/* list must start with MOVE */
     return;
-  int x0 = xlist[0];
-  int y0 = ylist[0];
   int x1, y1;
-  for( int i=1; i<npoint; i++) {
-    x1 = xlist[i];
-    y1 = ylist[i];
-    if( draw[i]) { 		// draw a line
+  int x0 = list[0].x;
+  int y0 = list[0].y;
+#ifdef DEBUG
+  printf("dl_draw_from_list( first= ");
+  dump_point(&list[0]);
+#endif  
+  for( int i=1; list[i].draw != P_END; i++) {
+#ifdef DEBUG
+    printf("point %d ", i);
+    dump_point( &list[i]);
+#endif    
+    x1 = list[i].x;
+    y1 = list[i].y;
+    if( list[i].draw) { 		// draw a line
       dl_draw_clipped_line( x0, y0, x1, y1, color);
     }
     x0 = x1;

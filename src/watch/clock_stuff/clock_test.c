@@ -28,7 +28,7 @@ int main( int argc, char *argv[]) {
   scale = 1.;
   offset = 0.;
 
-  a_point p_end = { -1, 0., 0. };
+  d_point p_end = { P_END, 0., 0. };
 
   for( int i=1; i<argc; i++) {
     if( *argv[i] == '-') {
